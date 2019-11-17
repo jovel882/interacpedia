@@ -11,5 +11,7 @@ return [
     "lang" => [
         "es",
         "en"
-    ]
+    ],
+    "quantityPerPage" => 15,
+    "pathImages" => "images/companies/",
 ];

@@ -41,24 +41,24 @@ Route::group(['middleware' => 'auth', 'prefix' => '{lang}/','where' => ['lang' =
     Route::group(['prefix' => 'companies'],function(){
         Route::get('/','CompanyController@index')
             ->name('companies.index');
+        Route::get('/create','CompanyController@create')
+            ->name('companies.create');
+        Route::post('/','CompanyController@store')
+            ->name('companies.store');            
         Route::get('/{company}','CompanyController@show')
             ->where('company', '[0-9]+')
             ->name('companies.show');
         Route::get('/{company}/edit','CompanyController@edit')
             ->where('company', '[0-9]+')
             ->name('companies.edit');
+        Route::match(['put', 'patch'],'/{company}','CompanyController@update')
+            ->where('company', '[0-9]+')
+            ->name('companies.update');
         Route::delete('/{company}','CompanyController@destroy')
             ->where('company', '[0-9]+')
             ->name('companies.destroy');
-        // Route::get('/add','ProductController@add')->name('product-add');
-        // Route::post('/add','ProductController@storage')->name('product-save');
-        // Route::get('/edit/{id}','ProductController@edit')->where('id', '[0-9]+')->name('product-edit');
-        // Route::post('/remove','ProductController@remove')->name('product-delete');
-        // Route::get('/restore/{id}','ProductController@restore')->where('id', '[0-9]+')->name('product-restore');
-        // Route::get('/view/{id}','ProductController@view')->where('id', '[0-9]+')->name('product-view');
     });
 });
-
 
 Auth::routes([
     'register' => false,

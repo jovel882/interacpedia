@@ -10,4 +10,8 @@ class Employee extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];    
     protected $guarded = ['id'];
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }    
 }

@@ -8,7 +8,7 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
         'email' => $faker->companyEmail,
-        'logo' => $faker->imageUrl(100, 100, 'abstract'),
+        'logo' => $faker->imageUrl(200, 150, 'technics',true, 'Interacpedia'),
         'website' => $faker->domainName,
     ];
 });
