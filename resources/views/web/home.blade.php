@@ -3,7 +3,7 @@
 @section('title', __('page.home.title'))
 
 @section('content_header')
-    <h1>{{__("page.home.header").app()->getLocale()}}</h1>
+    <h1><i class="fa fa-fw fa-home"></i> {{__("page.home.header")}}</h1>
 @stop
 
 @section('content')

@@ -24,7 +24,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        dd($this->company->all());
+        $companies=$this->company->withTrashed()->paginate(15);
+        return view("web.companies.index",compact("companies"));        
     }
 
     /**

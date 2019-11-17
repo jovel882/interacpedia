@@ -26,6 +26,13 @@ Route::get('lang/{lang}', function ($lang) {
     'lang' => implode("|",$array_languages)
 ]);
 
+Route::view('{lang}/', 'web.home')
+    ->middleware([
+        'auth'
+    ])
+    ->where([
+        'lang' => implode("|",$array_languages)
+    ]);    
 Route::view('/', 'web.home')
     ->middleware([
         'auth'
@@ -34,6 +41,15 @@ Route::group(['middleware' => 'auth', 'prefix' => '{lang}/','where' => ['lang' =
     Route::group(['prefix' => 'companies'],function(){
         Route::get('/','CompanyController@index')
             ->name('companies.index');
+        Route::get('/{company}','CompanyController@show')
+            ->where('company', '[0-9]+')
+            ->name('companies.show');
+        Route::get('/{company}/edit','CompanyController@edit')
+            ->where('company', '[0-9]+')
+            ->name('companies.edit');
+        Route::delete('/{company}','CompanyController@destroy')
+            ->where('company', '[0-9]+')
+            ->name('companies.destroy');
         // Route::get('/add','ProductController@add')->name('product-add');
         // Route::post('/add','ProductController@storage')->name('product-save');
         // Route::get('/edit/{id}','ProductController@edit')->where('id', '[0-9]+')->name('product-edit');
