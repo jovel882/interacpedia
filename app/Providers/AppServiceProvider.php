@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Events\Dispatcher;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +23,24 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Dispatcher $events)
     {
-        //
+        /*Genera la creacion del menu.
+         * @author John Fredy Velasco Bareño <jvelasco@awake.travel>
+         * 
+         */        
+        $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
+            $menu=[
+                ['header' => __("page.menu.title")],
+                [
+                    'text' => __("page.menu.companies"),
+                    'url' => route('companies.index',["lang" => app()->getLocale()]),
+                    'icon' => 'fas fa-fw fa-building'
+                ],                
+            ];
+            foreach ($menu as $item){
+                $event->menu->add($item);
+            }            
+        });
     }
 }
