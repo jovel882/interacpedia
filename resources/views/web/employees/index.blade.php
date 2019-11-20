@@ -30,13 +30,15 @@
     @endif    
     <div class="box">
         <div class="box-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <a name="btn_edit" id="btn_edit" href="{{route('employees.create', ['lang' => app()->getLocale()])}}" class="btn btn-success">
-                        <i class="fa fa-plus"></i> {{__("page.general.create")}}
-                    </a>                    
+            @if (auth()->user()->can('EmployeesCreate'))
+                <div class="row">
+                    <div class="col-md-12">
+                        <a name="btn_edit" id="btn_edit" href="{{route('employees.create', ['lang' => app()->getLocale()])}}" class="btn btn-success">
+                            <i class="fa fa-plus"></i> {{__("page.general.create")}}
+                        </a>                    
+                    </div>
                 </div>
-            </div>            
+            @endif
             <table id="tbl_view" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -104,17 +106,22 @@
                             </td>
                             <td>
                                 @if (!$employee->trashed())
-                                    <a name="btn_edit" id="btn_edit" href="{{route('employees.edit', ['lang' => app()->getLocale(),'company' => $employee->id])}}" class="btn btn-info">
-                                        <i class="fa fa-edit"></i> {{__('page.general.edit')}}
-                                    </a>
-                                    
-                                    <a name="btn_delete" id="btn_delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" data-url="{{route('employees.destroy',['lang' => app()->getLocale(),'company'=>$employee->id])}}" data-name="{{ $employee->full_name}}" >
-                                        <i class="fa fa-minus-circle"></i> {{__('page.general.delete')}}
-                                    </a>                                    
+                                    @if (auth()->user()->can('EmployeesEdit'))
+                                        <a name="btn_edit" id="btn_edit" href="{{route('employees.edit', ['lang' => app()->getLocale(),'company' => $employee->id])}}" class="btn btn-info">
+                                            <i class="fa fa-edit"></i> {{__('page.general.edit')}}
+                                        </a>
+                                    @endif
+                                    @if (auth()->user()->can('EmployeesDelete'))
+                                        <a name="btn_delete" id="btn_delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" data-url="{{route('employees.destroy',['lang' => app()->getLocale(),'company'=>$employee->id])}}" data-name="{{ $employee->full_name}}" >
+                                            <i class="fa fa-minus-circle"></i> {{__('page.general.delete')}}
+                                        </a>                                    
+                                    @endif
                                 @endif
-                                <a name="btn_view" id="btn_view" href="{{route('employees.show',['lang' => app()->getLocale(),'company'=>$employee->id])}}" target="_blank" class="btn btn-warning">
-                                    <i class="fa fa-eye"></i> {{__('page.general.view')}}
-                                </a> 
+                                @if (auth()->user()->can('EmployeesView'))
+                                    <a name="btn_view" id="btn_view" href="{{route('employees.show',['lang' => app()->getLocale(),'company'=>$employee->id])}}" target="_blank" class="btn btn-warning">
+                                        <i class="fa fa-eye"></i> {{__('page.general.view')}}
+                                    </a> 
+                                @endif
                             </td>
                         </tr>
                     @endforeach

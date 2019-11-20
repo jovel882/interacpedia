@@ -38,43 +38,57 @@ Route::view('/', 'web.home')
         'auth'
     ]);    
 Route::group(['middleware' => 'auth', 'prefix' => '{lang}/','where' => ['lang' => implode("|",$array_languages)]], function() {
-    Route::group(['prefix' => 'companies'],function(){
+    Route::group(['prefix' => 'companies','middleware' => ['permission:CompaniesCreate|CompaniesEdit|CompaniesView|CompaniesDelete']],function(){
         Route::get('/','CompanyController@index')
+            ->middleware(['permission:CompaniesCreate|CompaniesEdit|CompaniesView|CompaniesDelete'])
             ->name('companies.index');
         Route::get('/create','CompanyController@create')
+            ->middleware(['permission:CompaniesCreate'])
             ->name('companies.create');
         Route::post('/','CompanyController@store')
+            ->middleware(['permission:CompaniesCreate'])
             ->name('companies.store');            
         Route::get('/{company}','CompanyController@show')
+            ->middleware(['permission:CompaniesView'])
             ->where('company', '[0-9]+')
             ->name('companies.show');
         Route::get('/{company}/edit','CompanyController@edit')
+            ->middleware(['permission:CompaniesEdit'])
             ->where('company', '[0-9]+')
             ->name('companies.edit');
         Route::match(['put', 'patch'],'/{company}','CompanyController@update')
+            ->middleware(['permission:CompaniesEdit'])
             ->where('company', '[0-9]+')
             ->name('companies.update');
         Route::delete('/{company}','CompanyController@destroy')
+            ->middleware(['permission:CompaniesDelete'])
             ->where('company', '[0-9]+')
             ->name('companies.destroy');
     });
-    Route::group(['prefix' => 'employees'],function(){
+    Route::group(['prefix' => 'employees','middleware' => ['permission:EmployeesCreate|EmployeesEdit|EmployeesView|EmployeesDelete']],function(){
         Route::get('/','EmployeeController@index')
+            ->middleware(['permission:EmployeesCreate|EmployeesEdit|EmployeesView|EmployeesDelete'])
             ->name('employees.index');
         Route::get('/create','EmployeeController@create')
+            ->middleware(['permission:EmployeesCreate'])
             ->name('employees.create');
         Route::post('/','EmployeeController@store')
+            ->middleware(['permission:EmployeesCreate'])        
             ->name('employees.store');            
         Route::get('/{employee}','EmployeeController@show')
+            ->middleware(['permission:EmployeesView'])
             ->where('employee', '[0-9]+')
             ->name('employees.show');
         Route::get('/{employee}/edit','EmployeeController@edit')
+            ->middleware(['permission:EmployeesEdit'])
             ->where('employee', '[0-9]+')
             ->name('employees.edit');
         Route::match(['put', 'patch'],'/{employee}','EmployeeController@update')
+            ->middleware(['permission:EmployeesEdit'])
             ->where('employee', '[0-9]+')
             ->name('employees.update');
         Route::delete('/{employee}','EmployeeController@destroy')
+            ->middleware(['permission:EmployeesDelete'])
             ->where('employee', '[0-9]+')
             ->name('employees.destroy');
     });

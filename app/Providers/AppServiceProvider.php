@@ -35,12 +35,14 @@ class AppServiceProvider extends ServiceProvider
                 [
                     'text' => __("page.menu.companies"),
                     'url' => route('companies.index',["lang" => app()->getLocale()]),
-                    'icon' => 'fas fa-fw fa-building'
+                    'icon' => 'fas fa-fw fa-building',
+                    'permission' => ["CompaniesCreate","CompaniesEdit","CompaniesView","CompaniesDelete"],
                 ],                
                 [
                     'text' => __("page.menu.employees"),
                     'url' => route('employees.index',["lang" => app()->getLocale()]),
-                    'icon' => 'fas fa-fw fa-users'
+                    'icon' => 'fas fa-fw fa-users',
+                    'permission' => ["EmployeesCreate","EmployeesEdit","EmployeesView","EmployeesDelete"],
                 ],                
             ];
             foreach ($menu as $item){
