@@ -58,6 +58,26 @@ Route::group(['middleware' => 'auth', 'prefix' => '{lang}/','where' => ['lang' =
             ->where('company', '[0-9]+')
             ->name('companies.destroy');
     });
+    Route::group(['prefix' => 'employees'],function(){
+        Route::get('/','EmployeeController@index')
+            ->name('employees.index');
+        Route::get('/create','EmployeeController@create')
+            ->name('employees.create');
+        Route::post('/','EmployeeController@store')
+            ->name('employees.store');            
+        Route::get('/{employee}','EmployeeController@show')
+            ->where('employee', '[0-9]+')
+            ->name('employees.show');
+        Route::get('/{employee}/edit','EmployeeController@edit')
+            ->where('employee', '[0-9]+')
+            ->name('employees.edit');
+        Route::match(['put', 'patch'],'/{employee}','EmployeeController@update')
+            ->where('employee', '[0-9]+')
+            ->name('employees.update');
+        Route::delete('/{employee}','EmployeeController@destroy')
+            ->where('employee', '[0-9]+')
+            ->name('employees.destroy');
+    });
 });
 
 Auth::routes([
