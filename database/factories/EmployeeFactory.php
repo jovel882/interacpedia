@@ -10,6 +10,6 @@ $factory->define(App\Models\Employee::class, function (Faker $faker) {
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'email' => $faker->companyEmail,
-        'phone' => $faker->randomNumber(5,false),
+        'phone' => $faker->e164PhoneNumber,
     ];
 });

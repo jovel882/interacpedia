@@ -21,12 +21,15 @@ class Company extends Model
         }
         return $query->first();
     }
-    public function getAll($withTrash=false){
+    public function getAll($paginate=false,$withTrash=false){
         $query=$this;
         if($withTrash){
-            $query=$this->withTrashed();
+            $query=$query->withTrashed();
         }
-        return $query->paginate(config('page.quantityPerPage'));
+        if($paginate){
+            return $query->paginate(config('page.quantityPerPage'));
+        }
+        return $query->get();
     }
     public function store($data){
         try {

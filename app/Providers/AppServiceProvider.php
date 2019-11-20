@@ -37,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
                     'url' => route('companies.index',["lang" => app()->getLocale()]),
                     'icon' => 'fas fa-fw fa-building'
                 ],                
+                [
+                    'text' => __("page.menu.employees"),
+                    'url' => route('employees.index',["lang" => app()->getLocale()]),
+                    'icon' => 'fas fa-fw fa-users'
+                ],                
             ];
             foreach ($menu as $item){
                 $event->menu->add($item);

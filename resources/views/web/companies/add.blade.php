@@ -85,27 +85,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
-            tbl_view=$('#tbl_view').DataTable({
-                "processing": true,
-                "language": {!! __("page.general.dataTableLang") !!},                
-                "columnDefs": [ 
-                    {
-                        "className": "text-center", 
-                        "targets": "_all"
-                    },
-                    {
-                        "targets": [ 7 ],
-                        "orderable": false,
-                    },                    
-                ],
-                "order": [0,"asc"],
-                "scrollX": true,
-                "bPaginate": false,
-                "bLengthChange": false,
-                "bFilter": true,
-                "bInfo": false,
-                "bAutoWidth": false,                
-            });        
         });        
     </script>
 @endpush

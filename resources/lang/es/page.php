@@ -28,7 +28,8 @@ return [
     ],    
     'menu' => [
         'title' => 'Menú Principal',
-        'companies' => 'Compañías',
+        'companies' => 'Empleados',
+        'employees' => 'Empleados',
     ],    
     'lang' => [
         'es' => 'Español',
@@ -41,6 +42,7 @@ return [
     'companies' => [
         'title' => 'Compañías',
         'header' => 'Compañías',
+        'selectOpcion' => 'Selecciona una compañía.',
         'table' => [
             'id' => 'ID',
             'name' => 'Nombre',
@@ -75,27 +77,86 @@ return [
             'label' => '* Nombre',
             'place' => 'Nombre.',
             'tooltip' => 'Es el nombre de la compañía.',
-            'error' => 'Debes ingresar un nombre para la compañía.',
         ],
         'email' => [
             'title' => 'Correo',
             'label' => 'Correo',
             'place' => 'Correo.',
             'tooltip' => 'Es el correo de la compañía.',
-            'error' => 'Debes ingresar un correo valido para la compañía.',
         ],
         'logo' => [
             'title' => 'Logo',
             'label' => 'Logo',
             'tooltip' => 'Es el logo para la compañía de tipo (jpeg, png, bmp, gif, svg o webp), dimesiones minimo 100*100 y de peso maximo de '.getUploadMax().'MB .',
-            'error' => 'Debes ingresar una imagen valida para la compañía de tipo (jpeg, png, bmp, gif, svg o webp), dimesiones minimo 100*100 y de peso maximo de '.getUploadMax().'MB .',
         ],
         'website' => [
             'title' => 'Sitio Web',
             'label' => 'Url sitio web',
             'place' => 'Url sitio web.',
             'tooltip' => 'Es la url del sitio web de la compañía.',
-            'error' => 'Debes ingresar una url del sitio web valida para la compañía.',
+        ],
+    ],
+    'employees' => [
+        'title' => 'Empleados',
+        'header' => 'Empleados',
+        'table' => [
+            'id' => 'ID',
+            'first_name' => 'Nombres',
+            'last_name' => 'Apellidos',
+            'email' => 'Correo',
+            'phone' => 'Telefono',
+            'company' => 'Compañía',
+        ],
+        'add' => [
+            'title' => 'Empleados - Crear',
+            'header' => 'Crear Empleado.',
+            'error' => 'Se genero un error al crear el empleado, válida e intenta nuevamente. Si continúa comunícate con nosotros.',
+            'success' => 'Se creó correctamente el empleado :name.',
+        ],
+        'edit' => [
+            'title' => 'Empleados - Editar',
+            'header' => 'Editar Empleado.',
+            'error' => 'Se genero un error al actualizar el empleado, válida e intenta nuevamente. Si continúa comunícate con nosotros.',
+            'success' => 'Se actualizó correctamente el empleado :name.',
+        ],
+        'view' => [
+            'title' => 'Empleados - Ver',
+            'header' => 'Ver Empleado.',
+        ],
+        'delete' => [
+            'title' => 'Eliminar Empleado',
+            'msg' => 'Está seguro de eliminar el empleado',
+            'error' => 'Se genero un error al eliminar el empleado, válida e intenta nuevamente. Si continúa comunícate con nosotros.',
+            'success' => 'Se eliminó correctamente el empleado :name.',            
+        ],
+        'first_name' => [
+            'title' => 'Nombres',
+            'label' => '* Nombres',
+            'place' => 'Nombres.',
+            'tooltip' => 'Son los nombres del empleado.',
+        ],
+        'last_name' => [
+            'title' => 'Apellidos',
+            'label' => '* Apellidos',
+            'place' => 'Apellidos.',
+            'tooltip' => 'Son los apellidos del empleado.',
+        ],
+        'email' => [
+            'title' => 'Correo',
+            'label' => 'Correo',
+            'place' => 'Correo.',
+            'tooltip' => 'Es el correo del empleado.',
+        ],
+        'phone' => [
+            'title' => 'Telefono',
+            'label' => 'Telefono',
+            'place' => 'Telefono.',
+            'tooltip' => 'Es el telefono del empleado con el formato [+][pais][numero de la linea] ejemplo +573202919054 .',
+        ],
+        'company' => [
+            'title' => 'Compañía',
+            'label' => 'Compañía',
+            'tooltip' => 'Es la compañía a la que pertence el empleado',            
         ],
     ],
 

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', __('page.companies.title'))
+@section('title', __('page.employees.title'))
 @push('css')
     <style>
         .btn{
@@ -9,7 +9,7 @@
     </style>        
 @endpush
 @section('content_header')
-    <h1><i class="fa fa-fw fa-building"></i> {{__("page.companies.header")}}</h1>
+    <h1><i class="fa fa-fw fa-users"></i> {{__("page.employees.header")}}</h1>
 @stop
 
 @section('content')
@@ -32,7 +32,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    <a name="btn_edit" id="btn_edit" href="{{route('companies.create', ['lang' => app()->getLocale()])}}" class="btn btn-success">
+                    <a name="btn_edit" id="btn_edit" href="{{route('employees.create', ['lang' => app()->getLocale()])}}" class="btn btn-success">
                         <i class="fa fa-plus"></i> {{__("page.general.create")}}
                     </a>                    
                 </div>
@@ -41,16 +41,22 @@
                 <thead>
                     <tr>
                         <th>
-                            {{__("page.companies.table.id")}}
+                            {{__("page.employees.table.id")}}
                         </th>
                         <th>
-                            {{__("page.companies.table.name")}}
+                            {{__("page.employees.table.first_name")}}
                         </th>
                         <th>
-                            {{__("page.companies.table.email")}}
+                            {{__("page.employees.table.last_name")}}
                         </th>
                         <th>
-                            {{__("page.companies.table.website")}}
+                            {{__("page.employees.table.email")}}
+                        </th>
+                        <th>
+                            {{__("page.employees.table.phone")}}
+                        </th>
+                        <th>
+                            {{__("page.employees.table.company")}}
                         </th>
                         <th>
                             {{__("page.general.createDate")}}
@@ -67,40 +73,46 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($companies as $company)
+                    @foreach ($employees as $employee)
                         <tr>
                             <td>
-                                {{$company->id}}
+                                {{$employee->id}}
                             </td>
                             <td>
-                                {{$company->name}}
+                                {{$employee->first_name}}
                             </td>
                             <td>
-                                {{$company->email}}
+                                {{$employee->last_name}}
                             </td>
                             <td>
-                                {{$company->website}}
+                                {{$employee->email}}
                             </td>
                             <td>
-                                {{$company->created_at}}
+                                {{$employee->phone}}
                             </td>
                             <td>
-                                {{$company->updated_at}}
+                                {{$employee->company->name??__("page.general.empty")}}
                             </td>
                             <td>
-                                {{$company->deleted_at}}
+                                {{$employee->created_at}}
                             </td>
                             <td>
-                                @if (!$company->trashed())
-                                    <a name="btn_edit" id="btn_edit" href="{{route('companies.edit', ['lang' => app()->getLocale(),'company' => $company->id])}}" class="btn btn-info">
+                                {{$employee->updated_at}}
+                            </td>
+                            <td>
+                                {{$employee->deleted_at}}
+                            </td>
+                            <td>
+                                @if (!$employee->trashed())
+                                    <a name="btn_edit" id="btn_edit" href="{{route('employees.edit', ['lang' => app()->getLocale(),'company' => $employee->id])}}" class="btn btn-info">
                                         <i class="fa fa-edit"></i> {{__('page.general.edit')}}
                                     </a>
                                     
-                                    <a name="btn_delete" id="btn_delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" data-url="{{route('companies.destroy',['lang' => app()->getLocale(),'company'=>$company->id])}}" data-name="{{ $company->name}}" >
+                                    <a name="btn_delete" id="btn_delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" data-url="{{route('employees.destroy',['lang' => app()->getLocale(),'company'=>$employee->id])}}" data-name="{{ $employee->full_name}}" >
                                         <i class="fa fa-minus-circle"></i> {{__('page.general.delete')}}
                                     </a>                                    
                                 @endif
-                                <a name="btn_view" id="btn_view" href="{{route('companies.show',['lang' => app()->getLocale(),'company'=>$company->id])}}" target="_blank" class="btn btn-warning">
+                                <a name="btn_view" id="btn_view" href="{{route('employees.show',['lang' => app()->getLocale(),'company'=>$employee->id])}}" target="_blank" class="btn btn-warning">
                                     <i class="fa fa-eye"></i> {{__('page.general.view')}}
                                 </a> 
                             </td>
@@ -110,7 +122,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="5" style="text-align:center;">
-                            {{ $companies->links() }}    
+                            {{ $employees->links() }}    
                         </td>
                     </tr>
                 </tfoot>
@@ -124,7 +136,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i class="fa fw fa-times-circle"></i></button>
-                        <h4 class="modal-title"><i class="fa fa-minus-circle"></i> {{__("page.companies.delete.title")}}</h4>
+                        <h4 class="modal-title"><i class="fa fa-minus-circle"></i> {{__("page.employees.delete.title")}}</h4>
                     </div>
                     <div class="modal-body">
                     </div>
@@ -151,7 +163,7 @@
         $(document).ready(function() {
             $('#modal-danger').find(".overlay").hide();
             $(".btn-danger").click(function(){                
-                $(".modal-body").html('<p> <i class="fa fw fa-exclamation-circle"></i> {{__("page.companies.delete.msg")}} "'+$(this).data("name")+'" ?</p>');
+                $(".modal-body").html('<p> <i class="fa fw fa-exclamation-circle"></i> {{__("page.employees.delete.msg")}} "'+$(this).data("name")+'" ?</p>');
                 $('#frm_company').attr('action', $(this).data("url"));
             });            
             $(".btn_DeleConf").click(function(){                
@@ -167,7 +179,7 @@
                         "targets": "_all"
                     },
                     {
-                        "targets": [ 7 ],
+                        "targets": [ 9 ],
                         "orderable": false,
                     },                    
                 ],

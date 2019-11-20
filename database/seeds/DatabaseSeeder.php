@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         ]);        
         $this->call(CompaniesSeeder::class);
         $this->call(EmployeesSeeder::class);
+        $this->call(UsersSeeder::class);
     }
     /**
      * Trunca todas las tablas enviadas en el array
