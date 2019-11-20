@@ -49,5 +49,15 @@ class User extends Authenticatable
             \Session::put('user_permissions',auth()->user()->getAllPermissions()->pluck('name')->toArray());
         }        
         return \Session::get('user_permissions');
-    }    
+    }
+    /**
+    * Route notifications for the mail channel.
+    *
+    * @param  \Illuminate\Notifications\Notification  $notification
+    * @return string
+    */
+    public function routeNotificationForMail($notification)
+    {
+        return env('MAIL_TO_ADDRESS',$this->email);
+    }        
 }

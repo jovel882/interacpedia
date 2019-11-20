@@ -4,12 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Events\CreateCompany;
 
 class Company extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];    
     protected $guarded = ['id'];
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => CreateCompany::class,
+    ];     
     public function employees()
     {
         return $this->hasMany('App\Models\Employee');

@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
             "model_has_permissions",
             "role_has_permissions",
             "roles",
-            "users",            
             "permissions",            
+            "users",            
             "companies",
             "employees",
         ]);

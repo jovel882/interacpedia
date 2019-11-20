@@ -95,6 +95,15 @@ return [
             'place' => 'Url sitio web.',
             'tooltip' => 'Es la url del sitio web de la compañía.',
         ],
+        'notify' => [
+            'subject' => 'Nueva compañía.',
+            'greeting' => 'Hola!',
+            'txt' => 'Se creo una nueva compañía.',
+            'action' => 'Ver detalle de la nueva compañía',
+            'regards' => 'Saludos,',
+            'footer' => 'Si tienes problemas para hacer clic en el botón ":actionText", copia y pega la URL a continuación
+            en su navegador web:',
+        ],
     ],
     'employees' => [
         'title' => 'Empleados',
