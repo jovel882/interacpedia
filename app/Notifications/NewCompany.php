@@ -11,7 +11,7 @@ class NewCompany extends Notification
 {
     use Queueable;
     
-    protected $company;
+    public $company;
     
     /**
      * Create a new notification instance.
@@ -22,7 +22,6 @@ class NewCompany extends Notification
     {
         $this->company=$company;
     }
-
     /**
      * Get the notification's delivery channels.
      *

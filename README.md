@@ -40,17 +40,26 @@ composer install
 
 - `MAILGUN_DOMAIN="value"` Variable de entorno para la url del dominio de MailGun. Ejemplo `sandboxcf1adb816f9a4e51b604b93f5492de32.mailgun.org`.
 - `MAILGUN_SECRET="value"` Variable de entorno para el API key del dominio de MailGun. Ejemplo `f4632a995ca79aff67d6280c782623ec-09001d55-52406e15`.
+- `MAIL_FROM_ADDRESS="value"` Variable de entorno para la cuenta de correo que será el remitente.
+- `MAIL_FROM_NAME="value"` Variable de entorno para el nombre del remitente que aparecerá en los correos.
+- `MAIL_TO_ADDRESS="value"` Variable de entorno para la cuenta de correo a la cual serán enviadas las notificaciones, si está usando una cuenta free de MailGun asegúrese de habilitar esta cuenta previamente para que pueda recibir correos.
+
 5. En la raíz del sitio ejecutar.
 - `php artisan key:generate && php artisan config:cache && php artisan config:clear` Genera la llave para el cifrado de proyecto y refresca las configuraciones.
 - `php artisan migrate` Crea la estructura de BD. 
 - `php artisan db:seed` Carga los datos de ejemplo, en este caso el árbol inicial enviado en la prueba.
-- `php artisan storage:link` genera el link simbólico entre "public/storage" y "storage/app/public".
-- `php artisan serve` Arranca el servidor web.
+- `php artisan storage:link` Genera el link simbólico entre "public/storage" y "storage/app/public".
+- `php artisan permission:cache-reset` Limpia la cache de los permisos.
+- `php artisan serve` Arranca el servidor web bajo la url [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 ##### Nota: 
 Si desea puede ejecutar todos los comandos anteriores juntos si ejecuta 
 ```sh
-php artisan key:generate && php artisan config:cache && php artisan migrate && php artisan db:seed && php artisan storage:link && php artisan serve
+php artisan key:generate && php artisan config:cache && php artisan config:clear && php artisan migrate && php artisan db:seed && php artisan storage:link && php artisan serve
+```
+6. En la raíz del sitio usar este comando si se desea ejecutar las pruebas.
+```sh 
+vendor/bin/phpunit
 ```
 ## Descripción general de las URL's ⚙️
 

@@ -38,6 +38,7 @@ return [
     'home' => [
         'title' => 'Inicio',
         'header' => 'Inicio del sitio.',
+        'txt' => 'Bienvenido, accede a las funciones a través del menú.',
     ],
     'companies' => [
         'title' => 'Compañías',

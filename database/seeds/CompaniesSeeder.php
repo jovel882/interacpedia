@@ -12,6 +12,9 @@ class CompaniesSeeder extends Seeder
      */
     public function run()
     {
+        $dispatcher = Company::getEventDispatcher();
+        Company::unsetEventDispatcher();
         factory(Company::class,50)->create(); 
+        Company::setEventDispatcher($dispatcher);        
     }
 }
