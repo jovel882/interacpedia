@@ -61,6 +61,9 @@ php artisan key:generate && php artisan config:cache && php artisan config:clear
 ```sh 
 vendor/bin/phpunit
 ```
+
+7. Accede al sitio usando la url [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
 ## Descripción general de las URL's ⚙️
 
 Método|URL|Descripción
@@ -102,6 +105,14 @@ empresasgestion@admin.com|password|EmpresasGestion|Solo puede crear y editar las
 empleados@admin.com|password|Empleados|Solo puede realizar todas las acciones disponibles para los empleados (Crear, Editar, Ver y Eliminar).
 empleadosconsultas@admin.com|password|EmpleadosConsultas|Solo puede ver los empleados.
 empleadosgestion@admin.com|password|EmpleadosGestion|Solo puede crear y editar los empleados.
+
+## 💻 Despliegue en Heroku
+Se realizó un despliegue en Heroku bajo el siguiente End Point:
+[https://interacpedia.herokuapp.com/](https://interacpedia.herokuapp.com/)
+
+
+##### - Nota:
+Al no tener costo este espacio en Heroku los tiempos de respuesta no son tan óptimos y algunas caracteristicas no funcionan correctamente, por favor tomar solo de referencia y realizar el despliegue normal.
 
 ## Autor ✒️ 
 

@@ -28,7 +28,7 @@ return [
     'menu' => [
     'title' => 'Main Menu',
     'companies' => 'Companies',
-    'employee' => 'Employees',
+    'employees' => 'Employees',
     ],
     'lang' => [
     'es' => 'Spanish',
