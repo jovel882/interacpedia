@@ -27,7 +27,16 @@
         <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close btn_error" data-dismiss="alert" aria-label="cerrar" ><i class="fa fa-fw fa-times-circle"></i></button>
             <i class="fa fa-fw fa-ban"></i> {{session('delete')}}
         </div>    
-    @endif    
+    @endif
+    @if(count( $errors ) > 0)
+        <div class="alert alert-danger alert-dismissible fade in" role="alert"> <button type="button" class="close btn_error" data-dismiss="alert" aria-label="Cerrar" ><i class="fa fa-fw fa-times-circle"></i></button>
+            @foreach ($errors->all() as $error)
+                <div style="margin-bottom: 1em;">
+                    <i class="fa fa-fw fa-exclamation-triangle"></i> {{ $error }}
+                </div>
+            @endforeach
+        </div>                
+    @endif        
     <div class="box">
         <div class="box-body">
             @if (auth()->user()->can('EmployeesCreate'))

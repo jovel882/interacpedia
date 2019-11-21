@@ -7,5 +7,5 @@
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    <h1 class="text-center text-success">{{__("page.home.txt")}}</h1>
 @stop
