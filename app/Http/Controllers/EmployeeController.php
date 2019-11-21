@@ -115,7 +115,7 @@ class EmployeeController extends Controller
     public function destroy($lang,Employee $employee)
     {
         if($employee->remove()){
-            return redirect()->route("employees.index",['lang' => app()->getLocale()])->with('delete', __("page.employees.delete.success",["name"=>$employee->first_name]));
+            return redirect()->route("employees.index",['lang' => app()->getLocale()])->with('delete', __("page.employees.delete.success",["name"=>$employee->full_name]));
         }
         else{
             $errors = new \Illuminate\Support\MessageBag();
