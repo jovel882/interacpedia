@@ -12,12 +12,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTables([
+            "model_has_roles",
+            "model_has_permissions",
+            "role_has_permissions",
+            "roles",
+            "permissions",            
+            "users",            
             "companies",
             "employees",
-        ]);        
+        ]);
+        $this->call(PermissionSeeder::class);
+        $this->call(ProfileSeeder::class);                
+        $this->call(UsersSeeder::class);
         $this->call(CompaniesSeeder::class);
         $this->call(EmployeesSeeder::class);
-        $this->call(UsersSeeder::class);
     }
     /**
      * Trunca todas las tablas enviadas en el array

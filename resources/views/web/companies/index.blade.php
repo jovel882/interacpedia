@@ -30,13 +30,15 @@
     @endif    
     <div class="box">
         <div class="box-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <a name="btn_edit" id="btn_edit" href="{{route('companies.create', ['lang' => app()->getLocale()])}}" class="btn btn-success">
-                        <i class="fa fa-plus"></i> {{__("page.general.create")}}
-                    </a>                    
-                </div>
-            </div>            
+            @if (auth()->user()->can('CompaniesCreate'))
+                <div class="row">
+                    <div class="col-md-12">
+                        <a name="btn_edit" id="btn_edit" href="{{route('companies.create', ['lang' => app()->getLocale()])}}" class="btn btn-success">
+                            <i class="fa fa-plus"></i> {{__("page.general.create")}}
+                        </a>                    
+                    </div>
+                </div>            
+            @endif
             <table id="tbl_view" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -92,17 +94,22 @@
                             </td>
                             <td>
                                 @if (!$company->trashed())
-                                    <a name="btn_edit" id="btn_edit" href="{{route('companies.edit', ['lang' => app()->getLocale(),'company' => $company->id])}}" class="btn btn-info">
-                                        <i class="fa fa-edit"></i> {{__('page.general.edit')}}
-                                    </a>
-                                    
-                                    <a name="btn_delete" id="btn_delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" data-url="{{route('companies.destroy',['lang' => app()->getLocale(),'company'=>$company->id])}}" data-name="{{ $company->name}}" >
-                                        <i class="fa fa-minus-circle"></i> {{__('page.general.delete')}}
-                                    </a>                                    
+                                    @if (auth()->user()->can('CompaniesEdit'))
+                                        <a name="btn_edit" id="btn_edit" href="{{route('companies.edit', ['lang' => app()->getLocale(),'company' => $company->id])}}" class="btn btn-info">
+                                            <i class="fa fa-edit"></i> {{__('page.general.edit')}}
+                                        </a>
+                                    @endif
+                                    @if (auth()->user()->can('CompaniesDelete'))
+                                        <a name="btn_delete" id="btn_delete" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" data-url="{{route('companies.destroy',['lang' => app()->getLocale(),'company'=>$company->id])}}" data-name="{{ $company->name}}" >
+                                            <i class="fa fa-minus-circle"></i> {{__('page.general.delete')}}
+                                        </a>                                    
+                                    @endif
                                 @endif
-                                <a name="btn_view" id="btn_view" href="{{route('companies.show',['lang' => app()->getLocale(),'company'=>$company->id])}}" target="_blank" class="btn btn-warning">
-                                    <i class="fa fa-eye"></i> {{__('page.general.view')}}
-                                </a> 
+                                @if (auth()->user()->can('CompaniesView'))
+                                    <a name="btn_view" id="btn_view" href="{{route('companies.show',['lang' => app()->getLocale(),'company'=>$company->id])}}" target="_blank" class="btn btn-warning">
+                                        <i class="fa fa-eye"></i> {{__('page.general.view')}}
+                                    </a> 
+                                @endif
                             </td>
                         </tr>
                     @endforeach

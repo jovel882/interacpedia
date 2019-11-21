@@ -1,18 +1,20 @@
 {
-    "name": "laravel/laravel",
+    "name": "1Nt3R4cP3D1A",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Prueba para 1Nt3R4cP3D1A.",
     "keywords": [
-        "framework",
-        "laravel"
+        "Prueba",
+        "1Nt3R4cP3D1A"
     ],
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.4",
         "jeroennoten/laravel-adminlte": "1.*",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "spatie/laravel-permission": "^3.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
