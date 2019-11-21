@@ -17,7 +17,7 @@
             @endforeach
         </div>                
     @endif  
-    <form name="frm_employee" id ="frm_employee" class="form-horizontal" action="{{isset($employee)?route('employees.update',['lang' => app()->getLocale(),'company'=>$employee->id]):route('employees.store',['lang' => app()->getLocale()])}}" method="post" novalidate>
+    <form name="frm_employee" id ="frm_employee" class="form-horizontal" action="{{isset($employee)?route('employees.update',['lang' => app()->getLocale(),'company'=>$employee->id]):route('employees.store',['lang' => app()->getLocale()])}}" method="post">
         @if (isset($employee))
             @method('PUT')
             <input type="hidden" name="id" id="id" value="{{$employee->id}}" />
